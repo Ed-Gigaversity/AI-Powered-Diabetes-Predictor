@@ -1,0 +1,127 @@
+:root {
+    --primary: #00d2ff;
+    --secondary: #3a7bd5;
+    --accent: #1976d2;
+    --light-bg: #f9f9f9;
+    --text-dark: #0f172a;
+    --text-muted: #555;
+    --danger: #ff4b4b;
+    --success: #2ecc71;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* Base Styles */
+body, .stApp {
+    background-color: var(--light-bg);
+    color: var(--text-dark);
+}
+
+/* Text Readability */
+.stMarkdown, .stText, .stHeader, .stSubheader, .stTitle,
+.stSlider, .stSelectbox, .stTextInput, .stNumberInput {
+    color: var(--text-dark) !important;
+}
+
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    padding: 2rem 1rem;
+    margin: 2rem 0;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px var(--shadow);
+    animation: fadeIn 1s ease-out;
+}
+.hero-section h1 {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: var(--accent);
+}
+.gradient-text {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient 8s ease infinite;
+}
+
+/* Animation */
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Cards & Panels */
+.glass-panel, .metric-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(6px);
+    border-radius: 15px;
+    padding: 1.5rem;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 12px var(--shadow);
+    margin-bottom: 1rem;
+}
+.metric-card strong {
+    color: var(--accent);
+}
+
+/* Result Cards */
+.result-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 1rem 0;
+    color: var(--text-dark);
+    font-weight: 600;
+    animation: fadeIn 0.8s ease;
+}
+.high-risk {
+    border-left: 8px solid var(--danger);
+    background: #ffe6e6;
+    color: var(--danger) !important;
+}
+.low-risk {
+    border-left: 8px solid var(--success);
+    background: #e8fce8;
+    color: var(--success) !important;
+}
+
+/* Button Styles */
+.stButton > button {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+}
+.stButton > button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 210, 255, 0.5);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 0.9rem;
+    background-color: #f1f1f1;
+    padding: 1rem;
+    border-radius: 10px;
+    color: var(--text-muted);
+}
+
+/* Plotly Chart Background */
+.js-plotly-plot .plotly,
+.js-plotly-plot .plotly .main-svg {
+    background-color: transparent !important;
+}
+

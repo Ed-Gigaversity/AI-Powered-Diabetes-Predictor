@@ -1,0 +1,100 @@
+import streamlit as st
+import pandas as pd
+import numpy as np
+import joblib
+import time
+
+# Load model and scaler
+model = joblib.load("diabetes_model.pkl")
+scaler = joblib.load("scaler.pkl")
+
+# App Config
+st.set_page_config(page_title="Diabetes Predictor", page_icon="🩺", layout="wide")
+
+# Custom CSS
+st.markdown("""
+    <style>
+        .main {
+            background: linear-gradient(to right, #e0f7fa, #ffffff);
+        }
+        .stButton>button {
+            background-color: #009688;
+            color: white;
+            border-radius: 10px;
+            padding: 0.6em 1.5em;
+            font-size: 16px;
+        }
+        .st-bb {
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            padding: 10px;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+# Title
+st.title("🧠 Advanced Diabetes Prediction App")
+st.markdown("This app uses a **Random Forest Classifier** to predict whether a person is likely to have diabetes based on medical inputs.")
+
+st.sidebar.header("📝 Enter Patient Details")
+
+def get_user_input():
+    pregnancies = st.sidebar.slider("Pregnancies", 0, 20, 1)
+    glucose = st.sidebar.slider("Glucose", 80, 200, 120)
+    bp = st.sidebar.slider("Blood Pressure", 40, 130, 70)
+    skin = st.sidebar.slider("Skin Thickness", 0, 100, 20)
+    insulin = st.sidebar.slider("Insulin", 0, 300, 80)
+    bmi = st.sidebar.slider("BMI", 10.0, 60.0, 25.0)
+    dpf = st.sidebar.slider("Diabetes Pedigree Function", 0.1, 2.5, 0.5)
+    age = st.sidebar.slider("Age", 10, 100, 33)
+
+    user_data = {
+        "Pregnancies": pregnancies,
+        "Glucose": glucose,
+        "BloodPressure": bp,
+        "SkinThickness": skin,
+        "Insulin": insulin,
+        "BMI": bmi,
+        "DiabetesPedigreeFunction": dpf,
+        "Age": age
+    }
+
+    return pd.DataFrame(user_data, index=[0])
+
+# Get input and scale
+input_df = get_user_input()
+scaled_input = scaler.transform(input_df)
+
+# Predict Button
+if st.button("🔍 Predict"):
+    with st.spinner("Analyzing..."):
+        time.sleep(2)  # animation delay
+        prediction = model.predict(scaled_input)
+        proba = model.predict_proba(scaled_input)
+
+        st.success("Prediction complete!")
+
+        # Layout in columns
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.subheader("🩺 Prediction Result")
+            st.metric(
+                label="Outcome",
+                value="Diabetic" if prediction[0] == 1 else "Not Diabetic",
+                delta="⚠️ High Risk" if prediction[0] == 1 else "✅ Low Risk",
+                delta_color="inverse" if prediction[0] == 0 else "normal"
+            )
+
+        with col2:
+            st.subheader("📊 Prediction Probability")
+            st.progress(int(proba[0][1] * 100))
+            st.markdown(f"""
+            - **Not Diabetic**: `{proba[0][0]:.2f}`
+            - **Diabetic**: `{proba[0][1]:.2f}`
+            """)
+
+        # Optional info
+        st.markdown("---")
+        st.info("Note: This tool is for educational/demo purposes only. Please consult a medical professional for actual diagnosis.")
+
