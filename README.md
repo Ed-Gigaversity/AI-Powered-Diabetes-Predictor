@@ -11,7 +11,7 @@ An AI-powered web application to predict diabetes risk using health metrics. Bui
 
 ## 🛠️ Installation
 1. Clone the repository:
-   git clone https://github.com/yourusername/diabetes-prediction-app.git
+   git clone https://github.com/Ed-Gigaversity/AI-Powered-Diabetes-Predictor.git
    
 ## Install dependencies:
 
