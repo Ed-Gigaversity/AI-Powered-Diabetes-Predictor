@@ -40,7 +40,9 @@ or
 python -m streamlit run app.py
 ```
 ## Acknowledgements
-Streamlit
-Python (Pandas, NumPy)
-Scikit-learn (Random Forest Classifier)
+* Streamlit
+  
+* Python (Pandas, NumPy)
+  
+* Scikit-learn (Random Forest Classifier)
 
