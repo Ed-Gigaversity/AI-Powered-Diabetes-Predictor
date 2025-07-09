@@ -9,6 +9,17 @@ An AI-powered web application to predict diabetes risk using health metrics. Bui
 - **Visual Analytics**: Interactive charts (Plotly) & animations (Lottie)
 - **Responsive**: Works seamlessly on desktop and mobile
 
+Tech Stack:
+
+Frontend: Streamlit
+
+Backend: Python (Pandas, NumPy)
+
+ML: Scikit-learn (Random Forest Classifier)
+
+Model Performance: 89% Accuracy 
+
+
 ## 🛠️ Installation
 1. Clone the repository:
    git clone https://github.com/Ed-Gigaversity/AI-Powered-Diabetes-Predictor.git
@@ -21,17 +32,15 @@ Place your ML model files (diabetes_model.pkl and scaler.pkl) in the root direct
 
 ## 🚀 Usage
 Run the app:
+```
 streamlit run app.py
+```
 or
+```
 python -m streamlit run app.py
+```
+## Acknowledgements
+Streamlit
+Python (Pandas, NumPy)
+Scikit-learn (Random Forest Classifier)
 
-📊 Technical Details
-Tech Stack:
-
-Frontend: Streamlit
-
-Backend: Python (Pandas, NumPy)
-
-ML: Scikit-learn (Random Forest Classifier)
-
-Model Performance: 89% Accuracy 
